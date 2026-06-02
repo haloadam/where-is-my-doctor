@@ -49,25 +49,51 @@
     render();
   }
 
+  function labelFor(key) {
+    const c = COLS.find((c) => c.key === key);
+    return c.card || c.label;
+  }
+
+  // Custom dropdown (a native <select> renders an unstyled OS popup that on mobile opens
+  // upward over the map in dark mode — this menu is styled, light, and opens downward).
   function buildControls() {
     const section = document.getElementById("worst");
     const bar = document.createElement("div");
     bar.className = "table-controls";
-    const opts = COLS.map((c) => `<option value="${c.key}">${c.card || c.label}</option>`).join("");
+    const items = COLS.map((c) =>
+      `<li role="option" data-key="${c.key}" tabindex="-1">${c.card || c.label}</li>`).join("");
     bar.innerHTML =
-      `<label for="sort-by">Rendezés:</label>
-       <select id="sort-by" aria-label="Rendezés oszlop szerint">${opts}</select>
-       <button id="sort-dir" type="button" aria-label="Rendezés iránya" title="Növekvő / csökkenő">▲</button>`;
+      `<span class="ctl-label">Rendezés:</span>
+       <div class="dropdown" id="sort-dd">
+         <button type="button" id="sort-btn" class="dropdown-btn" aria-haspopup="listbox" aria-expanded="false">
+           <span id="sort-current">${labelFor(sortKey)}</span><span class="caret" aria-hidden="true">▾</span>
+         </button>
+         <ul id="sort-menu" class="dropdown-menu" role="listbox" aria-label="Rendezés oszlop szerint" hidden>${items}</ul>
+       </div>
+       <button id="sort-dir" type="button" class="sort-dir" aria-label="Rendezés iránya" title="Növekvő / csökkenő">▲</button>`;
     section.insertBefore(bar, section.querySelector(".table-wrap"));
-    bar.querySelector("#sort-by").addEventListener("change", (e) => { sortKey = e.target.value; sortDir = 1; render(); });
+
+    const dd = bar.querySelector("#sort-dd");
+    const btn = bar.querySelector("#sort-btn");
+    const menu = bar.querySelector("#sort-menu");
+    const open = (show) => { menu.hidden = !show; btn.setAttribute("aria-expanded", String(show)); };
+
+    btn.addEventListener("click", (e) => { e.stopPropagation(); open(menu.hidden); });
+    menu.querySelectorAll("li").forEach((li) =>
+      li.addEventListener("click", () => { sortKey = li.dataset.key; sortDir = 1; open(false); render(); }));
+    document.addEventListener("click", (e) => { if (!dd.contains(e.target)) open(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") open(false); });
     bar.querySelector("#sort-dir").addEventListener("click", () => { sortDir = -sortDir; render(); });
   }
 
   function syncControls() {
-    const sel = document.getElementById("sort-by");
-    const btn = document.getElementById("sort-dir");
-    if (sel) sel.value = sortKey;
-    if (btn) btn.textContent = sortDir === 1 ? "▲" : "▼";
+    const cur = document.getElementById("sort-current");
+    const dir = document.getElementById("sort-dir");
+    const menu = document.getElementById("sort-menu");
+    if (cur) cur.textContent = labelFor(sortKey);
+    if (dir) dir.textContent = sortDir === 1 ? "▲" : "▼";
+    if (menu) menu.querySelectorAll("li").forEach((li) =>
+      li.setAttribute("aria-selected", String(li.dataset.key === sortKey)));
   }
 
   function render() {

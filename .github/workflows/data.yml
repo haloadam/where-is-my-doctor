@@ -1,0 +1,54 @@
+name: Monthly data refresh
+
+on:
+  schedule:
+    - cron: '0 4 1 * *'   # 1st of each month, 04:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Cache tippecanoe build
+        id: cache-tippecanoe
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/tippecanoe
+          key: tippecanoe-2.79.0-${{ runner.os }}
+
+      - name: Build tippecanoe (if not cached)
+        if: steps.cache-tippecanoe.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update && sudo apt-get install -y build-essential libsqlite3-dev zlib1g-dev git
+          git clone --depth 1 --branch 2.79.0 https://github.com/felt/tippecanoe.git /tmp/tippecanoe
+          make -C /tmp/tippecanoe -j2
+          sudo make -C /tmp/tippecanoe install
+
+      - name: Run pipeline + build tiles
+        run: python pipeline/run_all.py
+
+      - name: Commit processed data + tiles
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add processed/ tiles/
+          git commit -m "Monthly refresh $(date -u +'%Y-%m-%d')" || echo "No changes to commit"
+          git push

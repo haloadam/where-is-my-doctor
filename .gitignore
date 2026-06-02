@@ -1,0 +1,15 @@
+# Re-derivable / large — kept out of git
+raw/
+interim/
+dist/
+# Big tiler-input GeoJSON is regenerable from the pipeline; commit the pmtiles instead.
+processed/*.geojson
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# OS
+.DS_Store

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Háziorvosi sivatagok Magyarországon</title>
+  <meta name="description" content="Interaktív térkép a háziorvosi ellátatlanságról Magyarországon — mely településeken nincs állandó háziorvos." />
+  <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="titles">
+      <h1>Háziorvosi sivatagok Magyarországon</h1>
+      <p class="subtitle">Mely településeken nincs állandó háziorvos, és milyen messze a legközelebbi működő rendelő.</p>
+    </div>
+    <div id="freshness" class="badge"
+         data-tip="Az adatok forrásból (NEAK, OKFŐ, KSH) való legutóbbi letöltésének dátuma.">Adatok frissítve: …</div>
+  </header>
+
+  <div id="map">
+    <button id="legend-open" class="legend-open" type="button" aria-expanded="true"
+            aria-controls="legend" hidden>Jelmagyarázat ▾</button>
+    <div id="legend" class="panel">
+      <button id="legend-close" class="panel-close" type="button" aria-label="Jelmagyarázat bezárása" title="Bezárás">×</button>
+      <div class="legend-title"
+           data-tip="A színek azt mutatják, mennyi a betöltött (működő) háziorvosi körzet a lakossághoz képest.">
+        Háziorvosi ellátottság <span class="info" tabindex="0" role="button" aria-label="Magyarázat">ⓘ</span>
+      </div>
+      <ul>
+        <li data-tip="Sivatag: a települést ellátó MINDEN háziorvosi körzet betöltetlen — nincs állandó háziorvos. (Időnként helyettesítő orvos jár ki.)">
+          <span class="sw" style="background:#6a3d9a"></span> Sivatag <span class="info" tabindex="0" role="button" aria-label="Magyarázat">ⓘ</span></li>
+        <li data-tip="Kritikus: 0,2-nél kevesebb betöltött háziorvosi körzet jut 1000 lakosra.">
+          <span class="sw" style="background:#e31a1c"></span> Kritikus</li>
+        <li data-tip="Alacsony: 0,2 és 0,4 közötti betöltött körzet jut 1000 lakosra.">
+          <span class="sw" style="background:#fd8d3c"></span> Alacsony</li>
+        <li data-tip="Közepes: 0,4 és 0,6 közötti betöltött körzet jut 1000 lakosra.">
+          <span class="sw" style="background:#fecc5c"></span> Közepes</li>
+        <li data-tip="Megfelelő: legalább 0,6 betöltött háziorvosi körzet jut 1000 lakosra.">
+          <span class="sw" style="background:#31a354"></span> Megfelelő</li>
+      </ul>
+      <label class="toggle"
+             data-tip="Bekapcsolva pontként megjelennek a betöltetlen (üres) háziorvosi körzetek a térképen.">
+        <input type="checkbox" id="toggle-vacant" /> Betöltetlen körzetek <span class="info" tabindex="0" role="button" aria-label="Magyarázat">ⓘ</span>
+      </label>
+      <ul class="vac-key" hidden>
+        <li data-tip="Betöltetlen körzet: jelenleg nincs állandó háziorvosa.">
+          <span class="dot" style="background:#fd8d3c"></span> betöltetlen</li>
+        <li data-tip="Tartósan betöltetlen: több mint 6 hónapja üres (OKFŐ besorolás).">
+          <span class="dot ring"></span> tartósan betöltetlen</li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="worst">
+    <h2>A 100 legrosszabbul ellátott település</h2>
+    <p class="muted small">Kattints egy oszlopfejlécre a rendezéshez. Egy sorra kattintva a térkép odaugrik. Vidd az egeret egy fejléc fölé a magyarázatért.</p>
+    <div class="table-wrap">
+      <table id="worst100"><thead></thead><tbody></tbody></table>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Módszertan.</strong> Egy település <em>sivatag</em>, ha minden őt ellátó háziorvosi körzet
+       betöltetlen — vagyis nincs állandó háziorvosa (időnként helyettesítő orvos láthatja el). Az
+       <em>ellátottság</em> a betöltött (működő) körzetek és a lakónépesség arányán alapul. A legközelebbi
+       háziorvos távolsága légvonalban mért érték × 1,4 közelítés (közúti távolság becslése, v1).</p>
+    <p><strong>Adatforrások:</strong>
+      <a href="https://www.neak.gov.hu/felso_menu/lakossagnak/szerzodott_szolgaltatok/haziorvosi_szolgalatok">NEAK</a> (háziorvosi szolgálatok, betöltetlen körzetek),
+      <a href="https://alapellatas.okfo.gov.hu/tajekoztato-a-tartosan-betoltetlen-haziorvosi-korzetekrol/">OKFŐ</a> (tartósan betöltetlen körzetek),
+      <a href="https://www.ksh.hu/gazetteer">KSH Helységnévtár</a> (Forrás: KSH, CC BY 4.0),
+      <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (településhatárok, ODbL).
+      <a id="repo-link" href="#">Forráskód</a>.</p>
+  </footer>
+
+  <script src="./vendor/maplibre-gl.js"></script>
+  <script src="./vendor/pmtiles.js"></script>
+  <script src="./js/ui.js"></script>
+  <script src="./js/map.js"></script>
+  <script src="./js/table.js"></script>
+</body>
+</html>

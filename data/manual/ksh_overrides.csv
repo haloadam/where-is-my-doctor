@@ -1,0 +1,4 @@
+name_norm,ksh_code,note
+# Manual OSM-name -> KSH-code overrides for any settlement the name/Wikidata bridge misses.
+# Currently EMPTY: the normalized-name join resolves 3155/3155 settlements with no stragglers.
+# Format: normalized OSM name (see pipeline/lib/names.py), 5-digit zero-padded KSH code, free note.

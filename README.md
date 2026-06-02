@@ -115,7 +115,9 @@ Three decoupled workflows using the official Pages flow:
 - **`routing.yml`** — occasional (manual and roughly yearly): self-hosts OSRM and regenerates the
   committed road-distance cache. The monthly job never runs a router.
 
-Enable Pages → *Build and deployment* → **GitHub Actions**, then trigger `deploy.yml` once.
+The first `deploy.yml` run enables Pages automatically (`configure-pages` is set with
+`enablement: true`). If your account/org policy blocks that, enable it manually once: repo
+**Settings → Pages → Build and deployment → Source: GitHub Actions**, then re-run the workflow.
 
 ## Tech
 

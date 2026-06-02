@@ -22,36 +22,35 @@ import pandas as pd
 from scipy.spatial import cKDTree
 
 from lib.assertions import Assertions
-from lib.config import (ACCESS_TIERS, AVG_SPEED_KMH, DESERT_BAND, EXPECT, INTERIM, ROAD_FACTOR)
+from lib.config import AVG_SPEED_KMH, EXPECT, INTERIM, ROAD_CACHE, ROAD_FACTOR
 from lib.haversine import chord_to_km, latlon_to_xyz
 from lib.io import read_parquet
-from lib.names import normalize
+from lib.scoring import classify
+from lib.seats import filled_seat_codes, seat_points
 
 RUN_DATE = date.today()
 
 
 def nearest_gp(a, gdf, vac_set):
-    """For each desert, straight-line km x ROAD_FACTOR to the nearest seat of a FILLED körzet.
-    Served settlements get nearest_gp_km = 0 (functioning access). Seats are mapped to a
-    centroid by normalized name (A-SEAT-JOIN guards coverage)."""
-    practices = read_parquet("practices")
-    filled = practices[~practices["hsz_kod"].isin(vac_set)].copy()
-    filled["nn"] = filled["seat_name"].map(normalize)
-    base = gdf.dropna(subset=["centroid_lat"]).drop_duplicates("name_norm")
-    lut = base.set_index("name_norm")
-    seats = filled[filled["nn"] != ""].drop_duplicates("nn")
-    matched = seats["nn"].isin(lut.index)
-    a.check("A-SEAT-JOIN", matched.mean() >= EXPECT["SEAT_JOIN_MIN"],
-            f"{matched.mean()*100:.1f}% of {len(seats)} filled-körzet seats resolved to a centroid")
+    """nearest_gp_km/minutes/settlement for each desert (the nearest FILLED körzet seat).
 
-    seat_lut = lut.loc[seats.loc[matched, "nn"].tolist()]
-    tree = cKDTree(latlon_to_xyz(seat_lut["centroid_lat"].astype(float).values,
-                                 seat_lut["centroid_lon"].astype(float).values))
-    seat_names = seat_lut["name"].values
+    Prefers real OSRM road distances from processed/road_cache.csv (v2); falls back to
+    haversine x ROAD_FACTOR (v1) per-desert when no cached filled seat is available.
+    `nearest_gp_method` records which was used. Served settlements get 0 (functioning access)."""
+    practices = read_parquet("practices")
+    seats, cov = seat_points(practices, gdf)
+    a.check("A-SEAT-JOIN", cov >= EXPECT["SEAT_JOIN_MIN"], f"{cov*100:.1f}% of seats resolved to a centroid")
+    filled = filled_seat_codes(practices, gdf, vac_set)
+
+    # v1 baseline: nearest FILLED seat by straight line x 1.4, for every desert.
+    fseats = seats[seats["seat_ksh"].isin(filled)].reset_index(drop=True)
+    tree = cKDTree(latlon_to_xyz(fseats["seat_lat"].to_numpy(float), fseats["seat_lon"].to_numpy(float)))
+    fnames = fseats["seat_name"].to_numpy()
 
     gdf["nearest_gp_km"] = 0.0
     gdf["nearest_gp_minutes"] = 0.0
     gdf["nearest_gp_settlement"] = pd.Series([None] * len(gdf), dtype=object, index=gdf.index)
+    gdf["nearest_gp_method"] = pd.Series([None] * len(gdf), dtype=object, index=gdf.index)
     dmask = (gdf["is_desert"] == 1) & gdf["centroid_lat"].notna()
     if dmask.any():
         q = latlon_to_xyz(gdf.loc[dmask, "centroid_lat"].astype(float).values,
@@ -60,19 +59,29 @@ def nearest_gp(a, gdf, vac_set):
         km = (chord_to_km(dist) * ROAD_FACTOR).round(1)
         gdf.loc[dmask, "nearest_gp_km"] = km
         gdf.loc[dmask, "nearest_gp_minutes"] = (km / AVG_SPEED_KMH * 60).round(0)
-        gdf.loc[dmask, "nearest_gp_settlement"] = seat_names[idx]
-        a.stat("max_desert_km", float(km.max()))
+        gdf.loc[dmask, "nearest_gp_settlement"] = fnames[idx]
+        gdf.loc[dmask, "nearest_gp_method"] = "straight"
 
-
-def classify(active_count, per_1000):
-    if active_count == 0:
-        return "desert", DESERT_BAND
-    if per_1000 is None or pd.isna(per_1000):
-        return "ok", ACCESS_TIERS[-1][2]
-    for hi, name, band in ACCESS_TIERS:
-        if per_1000 < hi:
-            return name, band
-    return ACCESS_TIERS[-1][1], ACCESS_TIERS[-1][2]
+    # v2 override: real road distance to the nearest FILLED cached seat, where available.
+    if ROAD_CACHE.exists():
+        cache = pd.read_csv(ROAD_CACHE, dtype={"from_ksh": str, "to_ksh": str})
+        cache = cache[cache["to_ksh"].isin(filled)]
+        best = cache.loc[cache.groupby("from_ksh")["road_km"].idxmin()].set_index("from_ksh")
+        used = 0
+        for i in gdf.index[dmask]:
+            code = gdf.at[i, "ksh_code"]
+            if code in best.index:
+                r = best.loc[code]
+                gdf.at[i, "nearest_gp_km"] = float(r["road_km"])
+                gdf.at[i, "nearest_gp_minutes"] = float(r["drive_minutes"])
+                gdf.at[i, "nearest_gp_settlement"] = r["to_name"]
+                gdf.at[i, "nearest_gp_method"] = "road"
+                used += 1
+        frac = used / max(1, int(dmask.sum()))
+        a.warn("A-ROAD-USED", frac >= EXPECT["ROAD_USED_MIN"], f"{frac*100:.1f}% of deserts via road")
+        a.stat("nearest_gp_road_share", round(frac, 4))
+    if dmask.any():
+        a.stat("max_desert_km", float(gdf.loc[dmask, "nearest_gp_km"].max()))
 
 
 def main():

@@ -18,7 +18,7 @@ import pandas as pd
 
 from lib.assertions import Assertions
 from lib.config import DATA_MANUAL, RAW_FILES
-from lib.io import read_parquet, write_parquet
+from lib.io import read_parquet
 from lib.names import normalize
 
 OVERRIDES = DATA_MANUAL / "ksh_overrides.csv"

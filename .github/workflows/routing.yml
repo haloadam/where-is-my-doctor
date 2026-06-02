@@ -1,0 +1,60 @@
+name: Refresh road-distance cache (OSRM)
+
+# v2 routing. Roads change slowly, so this runs occasionally (manual + ~yearly), NOT monthly.
+# It self-hosts OSRM, regenerates processed/road_cache.csv, and commits it; the monthly
+# data refresh (data.yml) and step 06 only READ the committed cache — no router at cron time.
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 3 1 1 *'   # once a year (1 Jan, 03:00 UTC)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: routing
+  cancel-in-progress: false
+
+jobs:
+  road-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Build OSRM (Hungary) + start router
+        run: bash scripts/osrm_build.sh   # GH runners are amd64 → no emulation
+
+      - name: Wait for OSRM to be ready
+        run: |
+          ok=
+          for i in $(seq 1 60); do
+            if curl -sf "http://localhost:5001/table/v1/driving/19.04,47.5;19.10,47.5?annotations=distance" >/dev/null; then
+              ok=1; echo "OSRM up"; break
+            fi
+            sleep 2
+          done
+          [ -n "$ok" ] || { echo "OSRM did not become ready in time" >&2; exit 1; }
+
+      - name: Build the inputs the cache needs (download + parse + geometry)
+        run: |
+          for s in 01_download 02_parse_active 04_parse_ksh 05_geometry_bridge; do
+            python pipeline/$s.py
+          done
+
+      - name: Generate road-distance cache
+        run: python pipeline/08_road_cache.py
+
+      - name: Commit cache
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add processed/road_cache.csv processed/road_cache_meta.json
+          git commit -m "Refresh road-distance cache (OSRM) $(date -u +'%Y-%m-%d')" || echo "No changes"
+          git push

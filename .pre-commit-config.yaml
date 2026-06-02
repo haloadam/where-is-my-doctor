@@ -1,0 +1,17 @@
+# Optional but recommended: `pip install pre-commit && pre-commit install`
+# Runs ruff and basic hygiene checks on changed files before each commit.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: [--fix]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: check-yaml
+      - id: check-added-large-files
+        args: [--maxkb=6000]   # the committed .pmtiles is ~4MB; block anything bigger by accident

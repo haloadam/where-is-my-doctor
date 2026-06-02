@@ -1,6 +1,20 @@
 {
   "checks": [
     {
+      "name": "A-ROAD-COVERAGE",
+      "ok": true,
+      "hard": true,
+      "step": "08_road_cache",
+      "detail": "100.00% of settlements have >=1 routable seat"
+    },
+    {
+      "name": "A-ROAD-SANE",
+      "ok": true,
+      "hard": false,
+      "step": "08_road_cache",
+      "detail": "99.8% of pairs have road_km >= haversine_km"
+    },
+    {
       "name": "A-ACTIVE-ROWS",
       "ok": true,
       "hard": true,
@@ -117,7 +131,14 @@
       "ok": true,
       "hard": true,
       "step": "06_join_and_score",
-      "detail": "98.4% of 1410 filled-körzet seats resolved to a centroid"
+      "detail": "100.0% of seats resolved to a centroid"
+    },
+    {
+      "name": "A-ROAD-USED",
+      "ok": true,
+      "hard": false,
+      "step": "06_join_and_score",
+      "detail": "100.0% of deserts via road"
     },
     {
       "name": "A-PERSIST-SUBSET",
@@ -156,7 +177,11 @@
     "vacant_rows": 1021,
     "persistent_rows": 924,
     "settlements_with_vacancy": 1059,
-    "max_desert_km": 19.4
+    "max_desert_km": 20.0,
+    "road_pairs": 63100,
+    "road_ratio_median": 1.564,
+    "road_pairs_ratio_gt3": 2868,
+    "nearest_gp_road_share": 1.0
   },
   "geometry_missing": []
 }

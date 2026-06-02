@@ -1,0 +1,25 @@
+# Tooling config for the GP Desert Map pipeline (tests + linting).
+# The pipeline itself is plain scripts; this file only configures pytest and ruff.
+
+[tool.pytest.ini_options]
+pythonpath = ["pipeline"]      # so tests can `import lib.*`
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = ["web/vendor", ".venv", "osrm", "raw", "interim", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]  # pycodestyle errors/warnings, pyflakes, import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["lib"]
+
+[tool.ruff.lint.per-file-ignores]
+# The numbered pipeline steps and CLI scripts intentionally insert pipeline/ onto sys.path
+# before importing `lib.*`, so module-level imports are not all at the top of the file.
+"pipeline/[0-9]*.py" = ["E402"]
+"pipeline/run_all.py" = ["E402"]
+"scripts/*.py" = ["E402"]

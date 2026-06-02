@@ -25,9 +25,11 @@ echo "tiles: $OUT  ${BYTES} bytes"
 if [ "$BYTES" -lt 8388608 ]; then echo "A-TILE-BYTES OK (<8MB)"; else echo "A-TILE-BYTES FAIL (>=8MB)" >&2; exit 1; fi
 
 # A-TILE-KSH: leading-zero KSH codes must survive as strings (not int-coerced) in the tiles.
+# (grep -c reads to EOF so tippecanoe-decode isn't SIGPIPE'd under `set -o pipefail`.)
 if command -v tippecanoe-decode >/dev/null 2>&1; then
-  if tippecanoe-decode "$OUT" 2>/dev/null | grep -m1 -q '"ksh_code": *"0[0-9]'; then
-    echo "A-TILE-KSH OK (leading-zero code preserved as string)"
+  HIT=$(tippecanoe-decode "$OUT" 2>/dev/null | grep -c '"ksh_code": *"0[0-9]' || true)
+  if [ "${HIT:-0}" -gt 0 ]; then
+    echo "A-TILE-KSH OK (${HIT} leading-zero codes preserved as strings)"
   else
     echo "A-TILE-KSH FAIL (no leading-zero ksh_code string found)" >&2; exit 1
   fi

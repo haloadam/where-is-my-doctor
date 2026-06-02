@@ -2,9 +2,18 @@
 <html lang="hu">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Háziorvosi sivatagok Magyarországon</title>
   <meta name="description" content="Interaktív térkép a háziorvosi ellátatlanságról Magyarországon — mely településeken nincs állandó háziorvos." />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <!-- Social / link previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Háziorvosi sivatagok Magyarországon" />
+  <meta property="og:description" content="Mely magyar településeken nincs állandó háziorvos, és milyen messze a legközelebbi működő rendelő." />
+  <meta property="og:url" content="https://haloadam.github.io/where-is-my-doctor/" />
+  <meta property="og:image" content="https://haloadam.github.io/where-is-my-doctor/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://haloadam.github.io/where-is-my-doctor/og-image.png" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./css/style.css" />
 </head>
@@ -21,6 +30,7 @@
   <div id="map">
     <button id="legend-open" class="legend-open" type="button" aria-expanded="true"
             aria-controls="legend" hidden>Jelmagyarázat ▾</button>
+    <button id="recenter" class="recenter" type="button" aria-label="Vissza Magyarországhoz" hidden><span aria-hidden="true">↺</span> Vissza Magyarországhoz</button>
     <div id="legend" class="panel">
       <button id="legend-close" class="panel-close" type="button" aria-label="Jelmagyarázat bezárása" title="Bezárás">×</button>
       <div class="legend-title"
@@ -64,13 +74,14 @@
     <p><strong>Módszertan.</strong> Egy település <em>sivatag</em>, ha minden őt ellátó háziorvosi körzet
        betöltetlen — vagyis nincs állandó háziorvosa (időnként helyettesítő orvos láthatja el). Az
        <em>ellátottság</em> a betöltött (működő) körzetek és a lakónépesség arányán alapul. A legközelebbi
-       háziorvos távolsága légvonalban mért érték × 1,4 közelítés (közúti távolság becslése, v1).</p>
+       háziorvos távolsága tényleges közúti távolság és menetidő autóval (OSRM útvonaltervezés); ahol nincs
+       közúti útvonal, légvonal × 1,4 becslés.</p>
     <p><strong>Adatforrások:</strong>
       <a href="https://www.neak.gov.hu/felso_menu/lakossagnak/szerzodott_szolgaltatok/haziorvosi_szolgalatok">NEAK</a> (háziorvosi szolgálatok, betöltetlen körzetek),
       <a href="https://alapellatas.okfo.gov.hu/tajekoztato-a-tartosan-betoltetlen-haziorvosi-korzetekrol/">OKFŐ</a> (tartósan betöltetlen körzetek),
       <a href="https://www.ksh.hu/gazetteer">KSH Helységnévtár</a> (Forrás: KSH, CC BY 4.0),
       <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (településhatárok, ODbL).
-      <a id="repo-link" href="#">Forráskód</a>.</p>
+      <a id="repo-link" href="https://github.com/haloadam/where-is-my-doctor">Forráskód</a>.</p>
   </footer>
 
   <script src="./vendor/maplibre-gl.js"></script>

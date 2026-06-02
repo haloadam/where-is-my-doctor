@@ -14,7 +14,7 @@ import pandas as pd
 from lib.assertions import Assertions, within
 from lib.config import EXPECT, RAW_FILES
 from lib.io import write_parquet
-from lib.ksh import K_PAIR_RE, zfill5
+from lib.ksh import parse_served_cell
 
 # Positional column map (A..M).
 COL = dict(county=0, hsz_kod=1, type=2, forma=3, neak_kod=4, provider=5,
@@ -41,15 +41,9 @@ def main():
     # Explode col K -> memberships.
     rows, parse_fail = [], 0
     for hsz, served in zip(df["hsz_kod"], df["served"].fillna("")):
-        for part in str(served).split(","):
-            part = part.strip()
-            if not part:
-                continue
-            m = K_PAIR_RE.match(part)
-            if not m:
-                parse_fail += 1
-                continue
-            rows.append((hsz, zfill5(m.group(1)), m.group(2).strip()))
+        pairs, fails = parse_served_cell(served)
+        parse_fail += fails
+        rows.extend((hsz, code, name) for code, name in pairs)
     mem = pd.DataFrame(rows, columns=["hsz_kod", "ksh_code", "served_name"])
     mem = mem.drop_duplicates(subset=["hsz_kod", "ksh_code"]).reset_index(drop=True)
 

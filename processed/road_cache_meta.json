@@ -1,0 +1,9 @@
+{
+  "computed_at": "2026-06-02T20:43:38.572167+00:00",
+  "osrm_url": "http://localhost:5001",
+  "profile": "car",
+  "K": 20,
+  "settlements": 3155,
+  "pairs": 63100,
+  "coverage": 1.0
+}

@@ -8,7 +8,6 @@ Outputs (processed/):
   meta.json                freshness + observed counts
   build_report.json        every assertion result (written incrementally by all steps)
 """
-import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -26,7 +25,7 @@ from lib.io import read_json, write_json
 PROP_COLS = [
     "ksh_code", "name", "county", "population", "active_gp_count", "gps_per_1000",
     "access_class", "access_band", "is_desert", "nearest_gp_km", "nearest_gp_minutes",
-    "nearest_gp_settlement", "vacant_count", "persistently_vacant_count",
+    "nearest_gp_settlement", "nearest_gp_method", "vacant_count", "persistently_vacant_count",
     "longest_vacancy_days", "centroid_lat", "centroid_lon",
 ]
 

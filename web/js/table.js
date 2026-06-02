@@ -20,7 +20,7 @@
     { key: "gps_per_1000", label: "Ellátottság", card: "Ellátottság (körzet / 1000 lakos)", num: true,
       tip: "Betöltött háziorvosi körzetek száma 1000 lakosra vetítve. Minél kisebb, annál rosszabb az ellátás (országos átlag ~0,45)." },
     { key: "nearest_gp_km", label: "Távolság (km)", card: "Legközelebbi háziorvos (km)", num: true,
-      tip: "A legközelebbi működő háziorvosi rendelő távolsága (légvonal × 1,4 közelítés). Csak sivatagoknál van értéke." },
+      tip: "A legközelebbi működő háziorvosi rendelő tényleges közúti távolsága autóval (OSRM). Csak sivatagoknál van értéke." },
     { key: "vacant_count", label: "Betöltetlen", card: "Betöltetlen körzet", num: true,
       tip: "Ennyi, a települést ellátó háziorvosi körzet betöltetlen (nincs állandó háziorvosa)." },
     { key: "longest_vacancy_days", label: "Üres (nap)", card: "Mióta üres (nap)", num: true,
@@ -108,8 +108,18 @@
   }
 
   buildControls();
-  fetch("./data/worst_100.json").then((r) => r.json()).then((data) => {
+  fetch("./data/worst_100.json").then((r) => {
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  }).then((data) => {
     rows = data;
     render();
-  }).catch((e) => console.error("worst_100 betöltése sikertelen", e));
+  }).catch((e) => {
+    console.error("worst_100 betöltése sikertelen", e);
+    const tbody = document.querySelector("#worst100 tbody");
+    if (tbody) {
+      tbody.innerHTML = `<tr><td colspan="${COLS.length}">⚠️ A táblázat adatai nem töltöttek be. `
+        + `Próbáld újratölteni az oldalt.</td></tr>`;
+    }
+  });
 })();

@@ -77,6 +77,15 @@
   function popupHtml(p) {
     const cls = p.access_class || "ok";
     const color = p.is_desert == 1 ? BANDS.desert : (BANDS.palette[p.access_band] || "#999");
+    const road = p.nearest_gp_method === "road";
+    const nearLabel = road ? "Legközelebbi háziorvos (közúton)" : "Legközelebbi háziorvos";
+    const nearTip = road
+      ? "A legközelebbi működő háziorvosi rendelő tényleges közúti távolsága és menetideje autóval (OSRM)."
+      : "A legközelebbi működő háziorvosi rendelő — légvonalban × 1,4 becslés (nincs közúti útvonal).";
+    const nearVal = p.nearest_gp_settlement
+      ? `${p.nearest_gp_settlement} — ${fmt(p.nearest_gp_km, " km")}`
+        + (road && p.nearest_gp_minutes != null ? ` · ~${p.nearest_gp_minutes} perc autóval` : "")
+      : "–";
     const rows = [
       ["Lakónépesség", p.population != null ? Number(p.population).toLocaleString("hu") : "–",
         "Az állandó lakosok száma (KSH, 2025)."],
@@ -88,9 +97,7 @@
         "Több mint 6 hónapja betöltetlen körzetek száma (OKFŐ)."],
       ["Ellátottság (körzet / 1000 lakos)", p.gps_per_1000 != null ? p.gps_per_1000 : "–",
         "Betöltött háziorvosi körzetek száma 1000 lakosra. Minél kisebb, annál rosszabb (országos átlag ~0,45)."],
-      ["Legközelebbi háziorvos", p.nearest_gp_settlement
-        ? `${p.nearest_gp_settlement} (${fmt(p.nearest_gp_km, " km")})` : "–",
-        "A legközelebbi település, ahol működő háziorvosi rendelő van — légvonalban × 1,4 közelítéssel. Csak sivatagoknál."],
+      [nearLabel, nearVal, nearTip],
       ["Mióta betöltetlen", p.longest_vacancy_days != null ? p.longest_vacancy_days + " nap" : "–",
         "A leghosszabb ideje betöltetlen körzet üresedése napokban."],
     ];
@@ -117,14 +124,44 @@
     document.querySelector(".vac-key").hidden = !e.target.checked;
   });
 
-  // Freshness badge + repo link from meta.json.
-  fetch("./data/meta.json").then((r) => r.json()).then((m) => {
+  // Freshness badge from meta.json.
+  fetch("./data/meta.json").then((r) => {
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  }).then((m) => {
     const d = (m.generated || "").slice(0, 10);
     document.getElementById("freshness").textContent = `Adatok frissítve: ${d || "—"}`;
     window.__meta = m;
-  }).catch(() => {});
+  }).catch((e) => {
+    console.error("meta.json betöltése sikertelen", e);
+    document.getElementById("freshness").textContent = "Adatok: nem elérhető";
+  });
+
+  // Surface a tile/source load failure instead of showing a blank map.
+  map.on("error", (e) => {
+    if (e && e.error) console.error("MapLibre hiba:", e.error.message || e.error);
+  });
 
   // Expose flyTo for the worst-100 table.
   window.flyToSettlement = (lng, lat) => map.flyTo({ center: [lng, lat], zoom: 11 });
   window.__map = map;
+
+  // "Back to Hungary": show a recenter button when the country scrolls out of view
+  // (e.g. a fast fling on a touchscreen). Shown when Hungary covers <5% of the viewport.
+  const HU = { w: 16.0, s: 45.7, e: 23.0, n: 48.6 };
+  const HOME = { center: [19.5033, 47.1625], zoom: 6.4 };
+  const recenterBtn = document.getElementById("recenter");
+  // "Lost the country" = the centre of the view has left Hungary (a fast pan/fling). Zooming OUT
+  // while still centred on Hungary does NOT trigger it — the centre is still over the country.
+  function countryLost() {
+    const c = map.getCenter();
+    return c.lng < HU.w || c.lng > HU.e || c.lat < HU.s || c.lat > HU.n;
+  }
+  function updateRecenter() { if (recenterBtn) recenterBtn.hidden = !countryLost(); }
+  if (recenterBtn) {
+    recenterBtn.addEventListener("click", () => map.flyTo({ ...HOME, essential: true }));
+    map.on("moveend", updateRecenter);
+    map.on("resize", updateRecenter);
+    map.on("load", updateRecenter);
+  }
 })();

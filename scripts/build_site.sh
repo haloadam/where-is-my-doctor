@@ -7,9 +7,10 @@ cd "$(dirname "$0")/.."
 rm -rf dist
 mkdir -p dist/data
 
-cp -R web/index.html web/css web/js web/vendor dist/
+cp -R web/index.html web/css web/js web/vendor web/favicon.svg dist/
 cp tiles/settlements.pmtiles dist/data/
 cp processed/worst_100.json processed/meta.json dist/data/
+cp docs/overview.png dist/og-image.png   # link-preview image referenced by the og:image meta tag
 touch dist/.nojekyll
 
 echo "dist/ assembled:"

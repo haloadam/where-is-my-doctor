@@ -2,6 +2,8 @@
 raw/
 interim/
 dist/
+# OSRM working dir: Hungary PBF + preprocessed graph (v2 routing)
+osrm/
 # Big tiler-input GeoJSON is regenerable from the pipeline; commit the pmtiles instead.
 processed/*.geojson
 

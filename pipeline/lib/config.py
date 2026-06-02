@@ -6,6 +6,7 @@ All other steps do `from lib.config import ...` (works because running
 """
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 # --- Paths -------------------------------------------------------------------
@@ -63,8 +64,15 @@ USER_AGENT = (
 HTTP_HEADERS = {"User-Agent": USER_AGENT, "Accept-Language": "hu,en;q=0.8"}
 
 # --- Scoring -----------------------------------------------------------------
-ROAD_FACTOR = 1.4        # straight-line km -> approx road km (v1; OSRM-upgradeable)
-AVG_SPEED_KMH = 50.0     # for nearest_gp_minutes estimate
+ROAD_FACTOR = 1.4        # straight-line km -> approx road km (v1 fallback; OSRM-upgradeable)
+AVG_SPEED_KMH = 50.0     # for nearest_gp_minutes estimate (v1 fallback)
+
+# v2 routing (OSRM road distances). The cache is precomputed occasionally and committed;
+# the monthly pipeline only reads it (06 prefers it, falls back to haversine x1.4).
+OSRM_URL = os.environ.get("OSRM_URL", "http://localhost:5001")
+ROAD_K = 20              # nearest seat settlements cached per settlement (haversine-prefilter)
+ROAD_CACHE = PROCESSED / "road_cache.csv"
+ROAD_CACHE_META = PROCESSED / "road_cache_meta.json"
 
 # Access tiers for SERVED settlements, keyed on gps_per_1000.
 # Deserts (active_gp_count == 0) are a separate category handled before these.
@@ -96,6 +104,8 @@ EXPECT = {
     "POP_NULL_MAX": 0.01,                # warn-only
     "DESERT_SANITY_MAX": 0.25,           # warn-only (true value ~21%: served only by vacant posts)
     "TILE_BYTES_MAX": 8 * 1024 * 1024,   # 8 MB
+    "ROAD_COVERAGE_MIN": 0.99,           # 08: fraction of settlements with >=1 routable seat
+    "ROAD_USED_MIN": 0.95,               # 06: fraction of deserts resolved via road (else stale cache)
 }
 
 # Hungary map view

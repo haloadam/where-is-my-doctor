@@ -10,7 +10,6 @@ structured parse (primary) vs a raw full-text anchor-regex count. A silent parse
 regression that changes the row count trips CI."""
 import re
 import sys
-from datetime import date, datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -22,19 +21,7 @@ from lib.assertions import Assertions, within
 from lib.config import EXPECT, RAW_FILES
 from lib.io import read_parquet, write_parquet
 from lib.names import normalize
-
-ANCHOR = re.compile(r"(\d{9})\s+([VFG])\s+(\d{4})")
-DATE = re.compile(r"(20\d{2})\.\s?(\d{2})\.\s?(\d{2})")
-
-
-def _parse_date(s):
-    m = DATE.search(s or "")
-    if not m:
-        return None
-    try:
-        return date(int(m.group(1)), int(m.group(2)), int(m.group(3))).isoformat()
-    except ValueError:
-        return None
+from lib.vacancy import ANCHOR, DATE, parse_date
 
 
 def parse_pdf(path):
@@ -51,7 +38,7 @@ def parse_pdf(path):
         if not a:
             continue
         dates = DATE.findall(line)
-        vstart = _parse_date(".".join(dates[-1])) if dates else None
+        vstart = parse_date(".".join(dates[-1])) if dates else None
         rows.append({"hsz_kod": a.group(1), "type": a.group(2), "postal": a.group(3),
                      "county": county, "vacancy_start": vstart})
     primary = pd.DataFrame(rows)
@@ -60,12 +47,10 @@ def parse_pdf(path):
 
 
 def parse_okfo(path):
-    """Return DataFrame keyed by (county_norm, type, postal) with persistent_start."""
-    try:
-        tables = pd.read_html(path)
-    except Exception as e:
-        print(f"  OKFŐ read_html failed: {e}")
-        return pd.DataFrame(columns=["county_norm", "type", "postal", "persistent_start"])
+    """Return DataFrame keyed by (county_norm, type, postal) with persistent_start.
+    Raises on a read failure so the caller can surface it (A-OKFO-PARSE), rather than
+    silently producing an all-False persistence flag."""
+    tables = pd.read_html(path)
     best = max(tables, key=len)
     best.columns = [str(c) for c in best.columns]
     txt = best.astype(str)
@@ -80,7 +65,7 @@ def parse_okfo(path):
         if pm:
             recs.append({"county_norm": normalize(county), "type": tm.group(1) if tm else None,
                          "postal": pm.group(1),
-                         "persistent_start": _parse_date(".".join(dts[-1])) if dts else None})
+                         "persistent_start": parse_date(".".join(dts[-1])) if dts else None})
     return pd.DataFrame(recs)
 
 
@@ -102,8 +87,12 @@ def main():
     a.check("A-VAC-JOIN", join_frac >= EXPECT["VAC_JOIN_MIN"],
             f"{join_frac*100:.1f}% vacancy körzets present in active list")
 
-    # Persistence flag from OKFŐ.
-    okfo = parse_okfo(RAW_FILES["okfo"])
+    # Persistence flag from OKFŐ (surface a parse failure instead of silently losing the flag).
+    try:
+        okfo = parse_okfo(RAW_FILES["okfo"])
+    except Exception as e:  # noqa: BLE001 — degrade visibly, don't crash the whole build
+        okfo = pd.DataFrame(columns=["county_norm", "type", "postal", "persistent_start"])
+        a.warn("A-OKFO-PARSE", False, f"OKFŐ HTML parse failed: {e}")
     vac["county_norm"] = vac["county"].map(normalize)
     if len(okfo):
         key = ["county_norm", "type", "postal"]

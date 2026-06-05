@@ -80,7 +80,17 @@ header h1 { margin: 0; font-size: 1.35rem; letter-spacing: -0.01em; }
 .info { color: var(--accent); font-size: 0.85em; vertical-align: 0.05em; }
 .toggle .info, .legend-title .info { opacity: 0.8; }
 
-.maplibregl-popup-content { font-size: 0.85rem; padding: 0.7rem 0.8rem; border-radius: 8px; }
+/* No-WebGL Leaflet fallback. Leaflet's panes/controls sit at z-index 400-1000, so the legend
+   and recenter button (z-index 2/3) must be lifted above them; the container gets the same
+   no-data background as the MapLibre 'bg' layer. */
+.fallback-2d .leaflet-container { background: #eaeaf2; }
+.fallback-2d .panel, .fallback-2d .legend-open { z-index: 1001; }
+.fallback-2d .recenter { z-index: 1002; }
+.leaflet-popup-content { margin: 0.7rem 0.8rem; }
+.leaflet-popup-content .popup h3 { margin-top: 0; }
+
+.maplibregl-popup-content, .leaflet-popup-content { font-size: 0.85rem; }
+.maplibregl-popup-content { padding: 0.7rem 0.8rem; border-radius: 8px; }
 .popup .k[data-tip] { border-bottom: 1px dotted #b9b9c6; }
 .popup .tag[data-tip] { cursor: help; }
 .popup h3 { margin: 0 0 0.3rem; font-size: 0.95rem; }

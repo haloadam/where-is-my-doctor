@@ -14,8 +14,8 @@
   <meta property="og:image" content="https://haloadam.github.io/where-is-my-doctor/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://haloadam.github.io/where-is-my-doctor/og-image.png" />
-  <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./css/style.css" />
+  <!-- Vendor map CSS (maplibre-gl.css / leaflet.css) is loaded on demand by boot.js, per render path. -->
 </head>
 <body>
   <header>
@@ -84,10 +84,11 @@
       <a id="repo-link" href="https://github.com/haloadam/where-is-my-doctor">Forráskód</a>.</p>
   </footer>
 
-  <script src="./vendor/maplibre-gl.js"></script>
-  <script src="./vendor/pmtiles.js"></script>
+  <!-- Renderer-independent helpers load eagerly. boot.js picks the map renderer (MapLibre/WebGL
+       or the Leaflet/Canvas2D fallback) and lazy-loads only the vendor libs that path needs. -->
   <script src="./js/ui.js"></script>
-  <script src="./js/map.js"></script>
+  <script src="./js/shared.js"></script>
   <script src="./js/table.js"></script>
+  <script src="./js/boot.js"></script>
 </body>
 </html>

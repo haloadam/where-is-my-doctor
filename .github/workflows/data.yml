@@ -42,6 +42,11 @@ jobs:
           make -C /tmp/tippecanoe -j2
           sudo make -C /tmp/tippecanoe install
 
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'   # for `npx mapshaper` in scripts/build_web_geojson.sh (fallback GeoJSON)
+
       - name: Run pipeline + build tiles
         run: python pipeline/run_all.py
 

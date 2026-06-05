@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Run the full pipeline (01–07) then build the vector tiles.
+"""Run the full pipeline (01–07) then build the vector tiles and the WebGL-free fallback GeoJSON.
 Any step that exits non-zero aborts the run (07 exits 1 on a hard assertion failure)."""
 import subprocess
 import sys
@@ -23,6 +23,8 @@ def main():
         subprocess.run([sys.executable, step], cwd=ROOT, check=True)
     print("\n===== scripts/build_tiles.sh =====", flush=True)
     subprocess.run(["bash", "scripts/build_tiles.sh"], cwd=ROOT, check=True)
+    print("\n===== scripts/build_web_geojson.sh =====", flush=True)
+    subprocess.run(["bash", "scripts/build_web_geojson.sh"], cwd=ROOT, check=True)
     print("\nPipeline complete.")
 
 

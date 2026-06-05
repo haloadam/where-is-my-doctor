@@ -143,7 +143,7 @@
   });
 
   // Expose flyTo for the worst-100 table.
-  window.flyToSettlement = (lng, lat) => map.flyTo({ center: [lng, lat], zoom: 11 });
+  window.flyToSettlement = (lng, lat) => map.flyTo({ center: [lng, lat], zoom: 11, speed: 3.6 });
   window.__map = map;
 
   // "Back to Hungary": show a recenter button when the country scrolls out of view
@@ -159,7 +159,7 @@
   }
   function updateRecenter() { if (recenterBtn) recenterBtn.hidden = !countryLost(); }
   if (recenterBtn) {
-    recenterBtn.addEventListener("click", () => map.flyTo({ ...HOME, essential: true }));
+    recenterBtn.addEventListener("click", () => map.flyTo({ ...HOME, essential: true, speed: 3.6 }));
     map.on("moveend", updateRecenter);
     map.on("resize", updateRecenter);
     map.on("load", updateRecenter);

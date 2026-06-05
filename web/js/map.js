@@ -18,9 +18,34 @@
     ok: "Legalább 0,6 betöltött háziorvosi körzet jut 1000 lakosra.",
   };
 
-  // Register the PMTiles protocol so MapLibre can read ./data/settlements.pmtiles via byte-range.
+  // Register the PMTiles protocol so MapLibre can read ./data/settlements.pmtiles.
+  const PMTILES_URL = "./data/settlements.pmtiles";
   const protocol = new pmtiles.Protocol();
   maplibregl.addProtocol("pmtiles", protocol.tile);
+
+  // GitHub Pages (and its CDN) doesn't reliably honour HTTP Range requests: it often
+  // answers a byte-range request with "200 OK" + the whole body, which makes PMTiles
+  // throw "...supports HTTP Byte Serving". The archive is small (~4 MB), so fetch it
+  // once and serve byte ranges from memory — no server-side byte serving needed.
+  // The fetch is lazy (on first tile/header read) and cached, and getKey() must match
+  // the URL the style references (the part after "pmtiles://") so protocol.add() wires up.
+  const bufferedSource = (url) => {
+    let bufferPromise = null;
+    return {
+      getKey: () => url,
+      getBytes: async (offset, length) => {
+        if (!bufferPromise) {
+          bufferPromise = fetch(url).then((r) => {
+            if (!r.ok) throw new Error("HTTP " + r.status);
+            return r.arrayBuffer();
+          });
+        }
+        const buffer = await bufferPromise;
+        return { data: buffer.slice(offset, offset + length) };
+      },
+    };
+  };
+  protocol.add(new pmtiles.PMTiles(bufferedSource(PMTILES_URL)));
 
   const map = new maplibregl.Map({
     container: "map",
@@ -30,7 +55,7 @@
     style: {
       version: 8,
       sources: {
-        gp: { type: "vector", url: "pmtiles://./data/settlements.pmtiles",
+        gp: { type: "vector", url: `pmtiles://${PMTILES_URL}`,
               attribution: "NEAK · OKFŐ · KSH · © OpenStreetMap" },
       },
       layers: [

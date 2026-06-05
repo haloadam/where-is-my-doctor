@@ -151,6 +151,27 @@ table#worst100 { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
   #worst100 .desert td:first-child { box-shadow: none; }
 }
 
+/* Mobile: collapse the worst-100 list to the first 5 cards with a "show all / show less" toggle.
+   The .cards-collapsed class lives on #worst100 (which render() preserves), so the visible 5 always
+   track the current sort. Desktop ignores the class (rule is inside the media query). The desktop/
+   mobile intro hints (.hint-*) swap here too. :not([hidden]) lets the button's hidden attribute win. */
+.cards-expander { display: none; }
+.cards-expander:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.hint-mobile { display: none; }
+
+@media (max-width: 760px) {
+  #worst100.cards-collapsed tbody tr:nth-child(n+6) { display: none; }
+  .cards-expander:not([hidden]) {
+    display: block; width: 100%; margin: 0.2rem 0 0.8rem;
+    padding: 0.6rem 0.8rem; border: 1px solid var(--line); border-radius: 10px;
+    background: #fff; font: inherit; font-size: 0.85rem; font-weight: 500;
+    color: var(--accent); cursor: pointer; text-align: center;
+  }
+  .cards-expander:hover { background: #f7f7fb; }
+  .hint-desktop { display: none; }
+  .hint-mobile { display: inline; }
+}
+
 footer { max-width: 1100px; margin: 1.5rem auto 3rem; padding: 0 1.2rem; color: var(--muted); font-size: 0.82rem; }
 footer a { color: var(--accent); }
 

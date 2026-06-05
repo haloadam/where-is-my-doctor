@@ -1,6 +1,7 @@
 /* A 100 legrosszabbul ellátott település — rendezhető táblázat, könyvtár nélkül.
    Asztali nézet: tömör, sortörhető fejlécű táblázat (kevés vízszintes görgetés).
-   Mobil nézet (<=720px): a sorok kártyákká alakulnak (label: érték), nincs vízszintes görgetés.
+   Mobil nézet (<=760px): a sorok kártyákká alakulnak (label: érték), nincs vízszintes görgetés.
+   Mobilon alapból csak az első 5 kártya látszik, a többit egy gomb nyitja ki.
    A fejlécek mellett rendező legördülő is van, hogy mobilon is lehessen rendezni. */
 (function () {
   "use strict";
@@ -30,6 +31,7 @@
   let rows = [];
   let sortKey = "rank";
   let sortDir = 1; // 1 = növekvő, -1 = csökkenő
+  let expander = null; // mobil "összes mutatása / kevesebb" gomb
 
   function val(r, k) {
     const v = r[k];
@@ -131,14 +133,53 @@
       }));
 
     syncControls();
+    applyCollapseUI();
+  }
+
+  // Mobile (<=760px): show only the first 5 cards; a toggle reveals the rest. CSS-driven via the
+  // .cards-collapsed class on #worst100 (which render() preserves), so the visible 5 always track the
+  // current sort with no JS row-slicing. Mirrors the legend collapse idiom in ui.js.
+  function buildExpander() {
+    const wrap = document.getElementById("worst").querySelector(".table-wrap");
+    expander = document.createElement("button");
+    expander.type = "button";
+    expander.className = "cards-expander";
+    expander.id = "cards-expander";
+    expander.setAttribute("aria-controls", "worst100");
+    expander.setAttribute("aria-expanded", "false");
+    expander.hidden = true; // revealed once the data shows there are more than 5 rows
+    wrap.insertAdjacentElement("afterend", expander); // sibling after .table-wrap → survives render()
+    expander.addEventListener("click", toggleExpand);
+  }
+
+  function toggleExpand() {
+    const table = document.getElementById("worst100");
+    const collapsing = !table.classList.contains("cards-collapsed");
+    table.classList.toggle("cards-collapsed", collapsing);
+    applyCollapseUI();
+    // On collapse the page shrinks — keep the toggle under the thumb (mirrors the map scrollIntoView).
+    if (collapsing) expander.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function applyCollapseUI() {
+    if (!expander) return;
+    const table = document.getElementById("worst100");
+    const hidden = rows.length - 5;
+    if (hidden <= 0) { expander.hidden = true; table.classList.remove("cards-collapsed"); return; }
+    expander.hidden = false;
+    const collapsed = table.classList.contains("cards-collapsed");
+    expander.setAttribute("aria-expanded", String(!collapsed));
+    expander.textContent = collapsed ? `További ${hidden} település mutatása` : "Kevesebb mutatása";
   }
 
   buildControls();
+  buildExpander();
   fetch("./data/worst_100.json").then((r) => {
     if (!r.ok) throw new Error("HTTP " + r.status);
     return r.json();
   }).then((data) => {
     rows = data;
+    document.getElementById("worst100").classList.add("cards-collapsed"); // start collapsed (mobile shows the first 5)
     render();
   }).catch((e) => {
     console.error("worst_100 betöltése sikertelen", e);

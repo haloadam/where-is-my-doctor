@@ -16,7 +16,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 213,
+    "longest_vacancy_days": 242,
     "centroid_lat": 48.50447,
     "centroid_lon": 20.95524
   },
@@ -37,7 +37,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 336,
+    "longest_vacancy_days": 365,
     "centroid_lat": 48.19743,
     "centroid_lon": 21.42183
   },
@@ -58,7 +58,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 213,
+    "longest_vacancy_days": 242,
     "centroid_lat": 48.49922,
     "centroid_lon": 20.92667
   },
@@ -79,7 +79,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1705,
+    "longest_vacancy_days": 1734,
     "centroid_lat": 47.32465,
     "centroid_lon": 17.75671
   },
@@ -100,7 +100,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 3531,
+    "longest_vacancy_days": 3560,
     "centroid_lat": 48.45569,
     "centroid_lon": 20.83811
   },
@@ -121,7 +121,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 975,
+    "longest_vacancy_days": 1004,
     "centroid_lat": 48.1863,
     "centroid_lon": 21.45756
   },
@@ -142,7 +142,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4019,
+    "longest_vacancy_days": 4048,
     "centroid_lat": 46.06582,
     "centroid_lon": 17.28075
   },
@@ -163,7 +163,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 213,
+    "longest_vacancy_days": 242,
     "centroid_lat": 48.5125,
     "centroid_lon": 21.01825
   },
@@ -184,7 +184,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1613,
+    "longest_vacancy_days": 1642,
     "centroid_lat": 47.69721,
     "centroid_lon": 20.86051
   },
@@ -205,7 +205,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1613,
+    "longest_vacancy_days": 1642,
     "centroid_lat": 47.69554,
     "centroid_lon": 20.80365
   },
@@ -226,7 +226,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 6545,
+    "longest_vacancy_days": 6574,
     "centroid_lat": 45.8696,
     "centroid_lon": 17.65798
   },
@@ -247,7 +247,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1858,
+    "longest_vacancy_days": 1887,
     "centroid_lat": 46.93914,
     "centroid_lon": 20.45279
   },
@@ -268,7 +268,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1340,
+    "longest_vacancy_days": 1369,
     "centroid_lat": 46.22132,
     "centroid_lon": 17.93925
   },
@@ -289,7 +289,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 7914,
+    "longest_vacancy_days": 7943,
     "centroid_lat": 48.21711,
     "centroid_lon": 21.63195
   },
@@ -310,7 +310,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 3897,
+    "longest_vacancy_days": 3926,
     "centroid_lat": 48.49619,
     "centroid_lon": 20.55668
   },
@@ -331,7 +331,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 213,
+    "longest_vacancy_days": 242,
     "centroid_lat": 48.47318,
     "centroid_lon": 20.93627
   },
@@ -352,7 +352,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 213,
+    "longest_vacancy_days": 242,
     "centroid_lat": 48.51212,
     "centroid_lon": 20.98835
   },
@@ -373,7 +373,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4354,
+    "longest_vacancy_days": 4383,
     "centroid_lat": 47.14097,
     "centroid_lon": 20.92838
   },
@@ -394,7 +394,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 3897,
+    "longest_vacancy_days": 3926,
     "centroid_lat": 48.49214,
     "centroid_lon": 20.51742
   },
@@ -415,7 +415,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 2466,
+    "longest_vacancy_days": 2495,
     "centroid_lat": 48.37038,
     "centroid_lon": 21.34437
   },
@@ -436,7 +436,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 7549,
+    "longest_vacancy_days": 7578,
     "centroid_lat": 48.22097,
     "centroid_lon": 21.50752
   },
@@ -457,7 +457,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4080,
+    "longest_vacancy_days": 4109,
     "centroid_lat": 46.59026,
     "centroid_lon": 18.03113
   },
@@ -478,7 +478,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 2344,
+    "longest_vacancy_days": 2373,
     "centroid_lat": 48.40764,
     "centroid_lon": 20.88025
   },
@@ -499,7 +499,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1279,
+    "longest_vacancy_days": 1308,
     "centroid_lat": 45.85181,
     "centroid_lon": 17.6968
   },
@@ -520,7 +520,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 2313,
+    "longest_vacancy_days": 2342,
     "centroid_lat": 47.0631,
     "centroid_lon": 20.46022
   },
@@ -541,7 +541,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 701,
+    "longest_vacancy_days": 730,
     "centroid_lat": 48.1825,
     "centroid_lon": 20.1414
   },
@@ -562,7 +562,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1217,
+    "longest_vacancy_days": 1246,
     "centroid_lat": 48.45732,
     "centroid_lon": 20.60251
   },
@@ -583,7 +583,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 6545,
+    "longest_vacancy_days": 6574,
     "centroid_lat": 45.90616,
     "centroid_lon": 17.65037
   },
@@ -604,7 +604,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4019,
+    "longest_vacancy_days": 4048,
     "centroid_lat": 46.10077,
     "centroid_lon": 17.2492
   },
@@ -625,7 +625,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4080,
+    "longest_vacancy_days": 4109,
     "centroid_lat": 46.59123,
     "centroid_lon": 18.00632
   },
@@ -646,7 +646,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 213,
+    "longest_vacancy_days": 242,
     "centroid_lat": 48.48416,
     "centroid_lon": 21.02062
   },
@@ -667,7 +667,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1888,
+    "longest_vacancy_days": 1917,
     "centroid_lat": 48.46865,
     "centroid_lon": 20.60972
   },
@@ -688,7 +688,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4201,
+    "longest_vacancy_days": 4230,
     "centroid_lat": 48.45922,
     "centroid_lon": 21.05745
   },
@@ -709,7 +709,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1217,
+    "longest_vacancy_days": 1246,
     "centroid_lat": 48.4561,
     "centroid_lon": 20.65063
   },
@@ -730,7 +730,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1067,
+    "longest_vacancy_days": 1096,
     "centroid_lat": 46.73236,
     "centroid_lon": 18.30789
   },
@@ -751,7 +751,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1978,
+    "longest_vacancy_days": 2007,
     "centroid_lat": 45.94173,
     "centroid_lon": 17.55694
   },
@@ -772,7 +772,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4019,
+    "longest_vacancy_days": 4048,
     "centroid_lat": 46.03493,
     "centroid_lon": 17.29202
   },
@@ -793,7 +793,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 578,
+    "longest_vacancy_days": 607,
     "centroid_lat": 46.55041,
     "centroid_lon": 17.04142
   },
@@ -814,7 +814,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1340,
+    "longest_vacancy_days": 1369,
     "centroid_lat": 46.2123,
     "centroid_lon": 17.97142
   },
@@ -835,7 +835,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 701,
+    "longest_vacancy_days": 730,
     "centroid_lat": 48.17205,
     "centroid_lon": 20.0893
   },
@@ -856,7 +856,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 3531,
+    "longest_vacancy_days": 3560,
     "centroid_lat": 48.45533,
     "centroid_lon": 20.88556
   },
@@ -877,7 +877,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 2313,
+    "longest_vacancy_days": 2342,
     "centroid_lat": 46.06889,
     "centroid_lon": 17.36461
   },
@@ -898,7 +898,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1613,
+    "longest_vacancy_days": 1642,
     "centroid_lat": 46.09095,
     "centroid_lon": 18.73213
   },
@@ -919,7 +919,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4841,
+    "longest_vacancy_days": 4870,
     "centroid_lat": 47.87463,
     "centroid_lon": 19.50004
   },
@@ -940,7 +940,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1217,
+    "longest_vacancy_days": 1246,
     "centroid_lat": 48.44707,
     "centroid_lon": 20.56821
   },
@@ -961,7 +961,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 213,
+    "longest_vacancy_days": 242,
     "centroid_lat": 48.48577,
     "centroid_lon": 20.96978
   },
@@ -982,7 +982,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 944,
+    "longest_vacancy_days": 973,
     "centroid_lat": 46.83356,
     "centroid_lon": 20.75327
   },
@@ -1003,7 +1003,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4201,
+    "longest_vacancy_days": 4230,
     "centroid_lat": 48.48065,
     "centroid_lon": 21.08135
   },
@@ -1024,7 +1024,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1279,
+    "longest_vacancy_days": 1308,
     "centroid_lat": 45.83488,
     "centroid_lon": 17.76697
   },
@@ -1045,7 +1045,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 7457,
+    "longest_vacancy_days": 7486,
     "centroid_lat": 46.89434,
     "centroid_lon": 21.54911
   },
@@ -1066,7 +1066,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1919,
+    "longest_vacancy_days": 1948,
     "centroid_lat": 46.28193,
     "centroid_lon": 18.23714
   },
@@ -1087,7 +1087,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 3,
     "persistently_vacant_count": 3,
-    "longest_vacancy_days": 1401,
+    "longest_vacancy_days": 1430,
     "centroid_lat": 47.62471,
     "centroid_lon": 20.91747
   },
@@ -1108,7 +1108,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 883,
+    "longest_vacancy_days": 912,
     "centroid_lat": 46.483,
     "centroid_lon": 19.112
   },
@@ -1129,7 +1129,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 3531,
+    "longest_vacancy_days": 3560,
     "centroid_lat": 47.39285,
     "centroid_lon": 20.35385
   },
@@ -1150,7 +1150,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 639,
+    "longest_vacancy_days": 668,
     "centroid_lat": 47.26217,
     "centroid_lon": 21.60952
   },
@@ -1171,7 +1171,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 2,
     "persistently_vacant_count": 2,
-    "longest_vacancy_days": 5815,
+    "longest_vacancy_days": 5844,
     "centroid_lat": 46.95606,
     "centroid_lon": 21.38994
   },
@@ -1192,7 +1192,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 2344,
+    "longest_vacancy_days": 2373,
     "centroid_lat": 48.37751,
     "centroid_lon": 20.87199
   },
@@ -1213,7 +1213,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 486,
+    "longest_vacancy_days": 515,
     "centroid_lat": 46.28413,
     "centroid_lon": 19.20826
   },
@@ -1234,7 +1234,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 2709,
+    "longest_vacancy_days": 2738,
     "centroid_lat": 48.00331,
     "centroid_lon": 18.90159
   },
@@ -1255,7 +1255,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 2801,
+    "longest_vacancy_days": 2830,
     "centroid_lat": 46.37421,
     "centroid_lon": 18.45414
   },
@@ -1276,7 +1276,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1462,
+    "longest_vacancy_days": 1491,
     "centroid_lat": 46.59447,
     "centroid_lon": 16.71919
   },
@@ -1297,7 +1297,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 5,
     "persistently_vacant_count": 5,
-    "longest_vacancy_days": 1644,
+    "longest_vacancy_days": 1673,
     "centroid_lat": 47.03869,
     "centroid_lon": 20.94021
   },
@@ -1318,7 +1318,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1493,
+    "longest_vacancy_days": 1522,
     "centroid_lat": 46.78993,
     "centroid_lon": 18.74363
   },
@@ -1339,7 +1339,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4080,
+    "longest_vacancy_days": 4109,
     "centroid_lat": 46.59493,
     "centroid_lon": 18.06503
   },
@@ -1360,7 +1360,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 0,
-    "longest_vacancy_days": 32,
+    "longest_vacancy_days": 61,
     "centroid_lat": 45.93675,
     "centroid_lon": 18.28295
   },
@@ -1381,7 +1381,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4749,
+    "longest_vacancy_days": 4778,
     "centroid_lat": 48.52567,
     "centroid_lon": 21.36189
   },
@@ -1402,7 +1402,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1919,
+    "longest_vacancy_days": 1948,
     "centroid_lat": 46.52972,
     "centroid_lon": 17.5182
   },
@@ -1423,7 +1423,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1128,
+    "longest_vacancy_days": 1157,
     "centroid_lat": 47.68914,
     "centroid_lon": 20.74132
   },
@@ -1444,7 +1444,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 5053,
+    "longest_vacancy_days": 5082,
     "centroid_lat": 46.679,
     "centroid_lon": 18.54555
   },
@@ -1465,7 +1465,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 5175,
+    "longest_vacancy_days": 5204,
     "centroid_lat": 46.48825,
     "centroid_lon": 19.58186
   },
@@ -1486,7 +1486,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 6545,
+    "longest_vacancy_days": 6574,
     "centroid_lat": 45.89114,
     "centroid_lon": 17.69658
   },
@@ -1507,7 +1507,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 883,
+    "longest_vacancy_days": 912,
     "centroid_lat": 46.82807,
     "centroid_lon": 18.81306
   },
@@ -1528,7 +1528,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1582,
+    "longest_vacancy_days": 1611,
     "centroid_lat": 47.49355,
     "centroid_lon": 17.86336
   },
@@ -1549,7 +1549,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 975,
+    "longest_vacancy_days": 1004,
     "centroid_lat": 48.20452,
     "centroid_lon": 21.53588
   },
@@ -1570,7 +1570,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1462,
+    "longest_vacancy_days": 1491,
     "centroid_lat": 46.5865,
     "centroid_lon": 16.65847
   },
@@ -1591,7 +1591,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 427,
+    "longest_vacancy_days": 456,
     "centroid_lat": 48.18284,
     "centroid_lon": 19.5486
   },
@@ -1612,7 +1612,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1919,
+    "longest_vacancy_days": 1948,
     "centroid_lat": 47.10004,
     "centroid_lon": 19.82291
   },
@@ -1633,7 +1633,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1858,
+    "longest_vacancy_days": 1887,
     "centroid_lat": 48.06158,
     "centroid_lon": 19.62413
   },
@@ -1654,7 +1654,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 2253,
+    "longest_vacancy_days": 2282,
     "centroid_lat": 47.24542,
     "centroid_lon": 18.04068
   },
@@ -1675,7 +1675,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 427,
+    "longest_vacancy_days": 456,
     "centroid_lat": 47.98494,
     "centroid_lon": 17.18478
   },
@@ -1696,7 +1696,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1128,
+    "longest_vacancy_days": 1157,
     "centroid_lat": 46.29935,
     "centroid_lon": 17.28964
   },
@@ -1717,7 +1717,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4050,
+    "longest_vacancy_days": 4079,
     "centroid_lat": 46.26489,
     "centroid_lon": 18.22346
   },
@@ -1738,7 +1738,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 4749,
+    "longest_vacancy_days": 4778,
     "centroid_lat": 48.5456,
     "centroid_lon": 21.35461
   },
@@ -1759,7 +1759,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1128,
+    "longest_vacancy_days": 1157,
     "centroid_lat": 46.87974,
     "centroid_lon": 17.02136
   },
@@ -1780,7 +1780,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 2284,
+    "longest_vacancy_days": 2313,
     "centroid_lat": 46.15687,
     "centroid_lon": 18.796
   },
@@ -1801,7 +1801,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 244,
+    "longest_vacancy_days": 273,
     "centroid_lat": 48.29031,
     "centroid_lon": 20.85695
   },
@@ -1822,7 +1822,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1888,
+    "longest_vacancy_days": 1917,
     "centroid_lat": 46.2581,
     "centroid_lon": 17.25824
   },
@@ -1843,7 +1843,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1888,
+    "longest_vacancy_days": 1917,
     "centroid_lat": 48.49284,
     "centroid_lon": 20.60866
   },
@@ -1864,7 +1864,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1097,
+    "longest_vacancy_days": 1126,
     "centroid_lat": 47.4171,
     "centroid_lon": 17.93877
   },
@@ -1885,7 +1885,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 244,
+    "longest_vacancy_days": 273,
     "centroid_lat": 47.97845,
     "centroid_lon": 20.59895
   },
@@ -1906,7 +1906,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1978,
+    "longest_vacancy_days": 2007,
     "centroid_lat": 46.77502,
     "centroid_lon": 16.59047
   },
@@ -1927,7 +1927,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1309,
+    "longest_vacancy_days": 1338,
     "centroid_lat": 48.19455,
     "centroid_lon": 22.38741
   },
@@ -1948,7 +1948,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 883,
+    "longest_vacancy_days": 912,
     "centroid_lat": 46.57253,
     "centroid_lon": 19.10044
   },
@@ -1969,7 +1969,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 3227,
+    "longest_vacancy_days": 3256,
     "centroid_lat": 48.08391,
     "centroid_lon": 20.20501
   },
@@ -1990,7 +1990,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 7914,
+    "longest_vacancy_days": 7943,
     "centroid_lat": 46.18844,
     "centroid_lon": 17.92667
   },
@@ -2011,7 +2011,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1978,
+    "longest_vacancy_days": 2007,
     "centroid_lat": 46.77004,
     "centroid_lon": 16.61532
   },
@@ -2032,7 +2032,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 2,
     "persistently_vacant_count": 2,
-    "longest_vacancy_days": 1493,
+    "longest_vacancy_days": 1522,
     "centroid_lat": 46.83266,
     "centroid_lon": 18.70332
   },
@@ -2053,7 +2053,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 1217,
+    "longest_vacancy_days": 1246,
     "centroid_lat": 47.07501,
     "centroid_lon": 21.66067
   },
@@ -2074,7 +2074,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 0,
-    "longest_vacancy_days": 1128,
+    "longest_vacancy_days": 1157,
     "centroid_lat": 47.00619,
     "centroid_lon": 16.89562
   },
@@ -2095,7 +2095,7 @@
     "nearest_gp_method": "road",
     "vacant_count": 1,
     "persistently_vacant_count": 1,
-    "longest_vacancy_days": 7914,
+    "longest_vacancy_days": 7943,
     "centroid_lat": 46.14742,
     "centroid_lon": 17.93864
   }

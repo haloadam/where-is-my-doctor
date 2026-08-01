@@ -19,7 +19,7 @@
       "ok": true,
       "hard": true,
       "step": "02_parse_active",
-      "detail": "6367 rows (expect ~6367)"
+      "detail": "6366 rows (expect ~6367)"
     },
     {
       "name": "A-COUNTIES",
@@ -54,7 +54,7 @@
       "ok": true,
       "hard": true,
       "step": "02_parse_active",
-      "detail": "8147 memberships (expect ~8147)"
+      "detail": "8146 memberships (expect ~8147)"
     },
     {
       "name": "A-MEMBERSHIP-FANOUT",
@@ -89,14 +89,14 @@
       "ok": true,
       "hard": true,
       "step": "03_parse_vacancy",
-      "detail": "100.0% vacancy körzets present in active list"
+      "detail": "99.9% vacancy körzets present in active list"
     },
     {
       "name": "A-OKFO-JOIN",
       "ok": true,
       "hard": false,
       "step": "03_parse_vacancy",
-      "detail": "91.1% vacancies flagged persistent via OKFŐ"
+      "detail": "93.4% vacancies flagged persistent via OKFŐ"
     },
     {
       "name": "A-KSH-ROWS",
@@ -164,7 +164,7 @@
   ],
   "degraded": false,
   "stats": {
-    "active_rows": 6367,
+    "active_rows": 6366,
     "distinct_k_codes": 3177,
     "settlement_count": 3155,
     "budapest_population": 1685209,
@@ -175,7 +175,7 @@
     "served_count": 2497,
     "emitted_features": 3155,
     "vacant_rows": 1021,
-    "persistent_rows": 930,
+    "persistent_rows": 954,
     "settlements_with_vacancy": 1059,
     "max_desert_km": 20.0,
     "road_pairs": 63100,

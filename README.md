@@ -5,7 +5,9 @@
 [![Tests](https://github.com/haloadam/where-is-my-doctor/actions/workflows/tests.yml/badge.svg)](https://github.com/haloadam/where-is-my-doctor/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Live map:** <https://haloadam.github.io/where-is-my-doctor/> &nbsp;·&nbsp; **Source:** <https://github.com/haloadam/where-is-my-doctor>
+**Live map:** <https://praxisradar.hu/> ·
+**Mirror:** <https://haloadam.github.io/where-is-my-doctor/> ·
+**Source:** <https://github.com/haloadam/where-is-my-doctor>
 
 A free, static, monthly-updated interactive map of general-practitioner access across every
 Hungarian settlement. It shows which settlements have **no functioning family doctor**

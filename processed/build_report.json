@@ -96,7 +96,7 @@
       "ok": true,
       "hard": false,
       "step": "03_parse_vacancy",
-      "detail": "91.7% vacancies flagged persistent via OKFŐ"
+      "detail": "93.1% vacancies flagged persistent via OKFŐ"
     },
     {
       "name": "A-KSH-ROWS",
@@ -175,7 +175,7 @@
     "served_count": 2490,
     "emitted_features": 3155,
     "vacant_rows": 1025,
-    "persistent_rows": 940,
+    "persistent_rows": 954,
     "settlements_with_vacancy": 1060,
     "max_desert_km": 20.0,
     "road_pairs": 63100,

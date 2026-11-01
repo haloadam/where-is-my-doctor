@@ -19,7 +19,7 @@
       "ok": true,
       "hard": true,
       "step": "02_parse_active",
-      "detail": "6365 rows (expect ~6367)"
+      "detail": "6360 rows (expect ~6367)"
     },
     {
       "name": "A-COUNTIES",
@@ -54,7 +54,7 @@
       "ok": true,
       "hard": true,
       "step": "02_parse_active",
-      "detail": "8146 memberships (expect ~8147)"
+      "detail": "8141 memberships (expect ~8147)"
     },
     {
       "name": "A-MEMBERSHIP-FANOUT",
@@ -68,21 +68,21 @@
       "ok": true,
       "hard": true,
       "step": "03_parse_vacancy",
-      "detail": "1025 vacancy rows (expect ~1021)"
+      "detail": "1026 vacancy rows (expect ~1021)"
     },
     {
       "name": "A-VAC-XCHECK",
       "ok": true,
       "hard": true,
       "step": "03_parse_vacancy",
-      "detail": "line-parse 1025 vs anchor-regex 1025"
+      "detail": "line-parse 1026 vs anchor-regex 1026"
     },
     {
       "name": "A-VAC-TYPES",
       "ok": true,
       "hard": true,
       "step": "03_parse_vacancy",
-      "detail": "{'V': 418, 'F': 344, 'G': 263} vs {'V': 415, 'F': 350, 'G': 256}"
+      "detail": "{'V': 419, 'F': 341, 'G': 266} vs {'V': 415, 'F': 350, 'G': 256}"
     },
     {
       "name": "A-VAC-JOIN",
@@ -96,7 +96,7 @@
       "ok": true,
       "hard": false,
       "step": "03_parse_vacancy",
-      "detail": "93.1% vacancies flagged persistent via OKFŐ"
+      "detail": "92.2% vacancies flagged persistent via OKFŐ"
     },
     {
       "name": "A-KSH-ROWS",
@@ -164,19 +164,19 @@
   ],
   "degraded": false,
   "stats": {
-    "active_rows": 6365,
+    "active_rows": 6360,
     "distinct_k_codes": 3177,
     "settlement_count": 3155,
     "budapest_population": 1685209,
     "osm_features": 3174,
     "osm_dissolved": 3153,
     "settlements_with_geometry": 3155,
-    "desert_count": 665,
-    "served_count": 2490,
+    "desert_count": 667,
+    "served_count": 2488,
     "emitted_features": 3155,
-    "vacant_rows": 1025,
-    "persistent_rows": 954,
-    "settlements_with_vacancy": 1060,
+    "vacant_rows": 1026,
+    "persistent_rows": 946,
+    "settlements_with_vacancy": 1061,
     "max_desert_km": 20.0,
     "road_pairs": 63100,
     "road_ratio_median": 1.564,

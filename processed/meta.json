@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-01T10:38:39.560634+00:00",
-  "active_rows": 6365,
-  "vacant_rows": 1025,
+  "generated": "2026-11-01T10:58:14.255197+00:00",
+  "active_rows": 6360,
+  "vacant_rows": 1026,
   "settlement_count": 3155,
-  "desert_count": 665,
+  "desert_count": 667,
   "degraded": false
 }
